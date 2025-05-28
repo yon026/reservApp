@@ -1,0 +1,82 @@
+
+
+Linux Mint Xia(Ubuntu 22)
+1) Abrir el terminal y verificar la instalación de Java con: java -version
+2)Editar el archivo de configuración: sudo nano /etc/environment
+3) Agregar las siguientes líneas (ajustando la ruta según tu instalación):
+    JAVA_HOME="/usr/lib/jvm/java-XX-openjdk-amd64"
+    PATH="$JAVA_HOME/bin:$PATH"
+    export JAVA_HOME
+    export PATH
+4) Guardar y aplicar los cambios con: source /etc/environment
+
+Windows
+1) Buscar "Variables de entorno" en el menú de inicio y abrir la configuración avanzada del sistema.
+2) En "Variables del sistema", hacer clic en "Nueva" y agregar: Nombre: JAVA_HOME
+3) Valor: C:\Program Files\Java\jdkXX
+4) Editar la variable Path y agregar: %JAVA_HOME%\bin
+5) Guardar los cambios y reiniciar el sistema para que surtan efecto.
+
+
+Instalacion de maven
+Ubuntu:
+1- Actualizar repositorios: sudo apt update
+2- Instalar Maven: sudo apt install maven
+3- Verificar instalación: mvn -version
+
+Windows:
+1- Descargar Maven desde Apache Maven.
+2- Extraer el archivo ZIP en una carpeta (ej. C:\Maven).
+3- Configurar variables de entorno:
+4- Agregar M2_HOME y MAVEN_HOME con la ruta de Maven.
+5- Editar Path y añadir %M2_HOME%\bin.
+6_ Verificar instalación: mvn -version
+
+Consideraciones al usar java fx en Intellij Idea
+Pasos para ajustar la configuración en IntelliJ IDEA
+1)Abrir la Configuración de Ejecución
+2)Ve a Run > Edit Configurations... desde el menú.
+3)Seleccionar la Configuración de Tipo Application
+4)Escoge la configuración que usas para ejecutar tu aplicación.
+5)Actualizar los VM Options
+    En el campo VM Options, reemplaza la ruta anterior por la ruta correcta, quedando así: 
+    java --module-path /home/cafe/apps/javafx-sdk-21.0.7/lib --add-modules=javafx.controls,javafx.fxml -jar out/artifacts/reservApp.jar
+
+Agregar el JavaFX SDK como Librería del Proyecto
+1) Abre la Configuración del Proyecto: Ve a File > Project Structure
+2) Añade la Librería: En la ventana de "Project Structure", selecciona la pestaña Libraries y haz clic en el botón “+” para agregar una nueva librería.
+3) Selecciona Java.
+4) Navega hasta la carpeta lib dentro de tu JavaFX SDK. Por ejemplo: /home/apps/javafx-sdk-21.0.7/lib
+   Selecciona todos los archivos JAR que encuentres allí y haz clic en "OK". Esto agregará los JAR de JavaFX a tu proyecto.
+
+5) Asigna la Librería a los Módulos Necesarios: Después de agregarla, asegúrate de que la librería esté asociada a los módulos donde la necesitas en el apartado Modules de la misma ventana.
+
+--- solucion a java.lang.module.FindException: Module javafx.controls not found ---
+1) Verifica dónde extrajiste el SDK de JavaFX.
+    ls /home/cafe/apps/javafx-sdk-21.0.7/lib
+    Si no ves archivos como javafx.controls.jar, javafx.fxml.jar, etc., es posible que el SDK esté en otra ubicación.
+
+2) ejecutar: --module-path /home/cafe/apps/javafx-sdk-21.0.7/lib --add-modules=javafx.controls,javafx.fxml
+
+IDE
+1) Abrir la Configuración de Ejecución
+2) Ve a Run > Edit Configurations... desde el menú.
+3) Darle al +(Esquina superior izquierda 'Add new configuration')
+4) Seleccionar la Configuración de Tipo Application(Ponerle un nombre cualquiera)
+5) Escoge la configuración que usas para ejecutar tu aplicación.
+6) Buscar modify options-java-add VM Options
+7) Actualizar los VM Options
+   En el campo VM Options, reemplaza la ruta anterior por la ruta correcta, quedando así:
+   --module-path /home/cafe/apps/javafx-sdk-21.0.7/lib --add-modules=javafx.controls,javafx.fxml
+8) Guardar y Ejecutar
+9) Guarda la configuración y vuelve a ejecutar la aplicación. La JVM debería ahora encontrar el módulo javafx.controls y cualquier otro módulo que hayas agregado.
+
+--- Elegir carpeta para proyectos ---
+1) Crear la carpeta donde te gustaria guardarlos
+2) En el IDE: File-Settings-System settings-Cargar la ruta en 'Default project directory'
+
+--- EJECUTAR EL JAR ---
+java --module-path /home/cafe/apps/javafx-sdk-21.0.7/lib --add-modules=javafx.controls,javafx.fxml -jar /home/cafe/desarrollo/javaProyectos/reservApp/out/artifacts/reservApp_jar/reservApp.jar
+
+
+
