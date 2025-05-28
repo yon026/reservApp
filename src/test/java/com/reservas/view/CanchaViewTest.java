@@ -1,16 +1,30 @@
-
 package com.reservas.view;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
+import org.junit.jupiter.api.Test;
+import org.testfx.framework.junit5.ApplicationTest;
 
-public class CanchaViewTest {
+import static org.testfx.assertions.api.Assertions.assertThat;
+
+public class CanchaViewTest extends ApplicationTest {
+
+    private Button boton;
+
+    @Override
+    public void start(Stage stage) {
+        boton = new Button("Reservar");
+        boton.setId("botonReservar");
+        boton.setVisible(true); // se asegura que esté visible
+        Scene scene = new Scene(boton, 300, 200);
+        stage.setScene(scene);
+        stage.show();
+    }
 
     @Test
     public void botonDeberiaEstarVisible() {
-        Button boton = new Button();
-        boton.setVisible(true);
-        assertTrue(boton.isVisible());
+        // Verifica que el botón esté visible en la escena
+        assertThat(lookup("#botonReservar").queryAs(Button.class)).isVisible();
     }
 }
