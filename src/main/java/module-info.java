@@ -1,0 +1,15 @@
+module com.reservadecanchas.app {
+    requires javafx.controls;
+    requires javafx.fxml;
+    requires java.sql;
+   
+    exports com.reservadecanchas.app;
+    exports com.reservadecanchas.util ;
+    exports com.reservadecanchas.controller;    
+    exports com.reservadecanchas.model;
+
+    opens com.reservadecanchas.controller to javafx.fxml;
+    opens com.reservadecanchas.util to javafx.fxml;
+    opens com.reservadecanchas.app to javafx.fxml;
+   
+}

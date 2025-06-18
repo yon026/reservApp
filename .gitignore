@@ -1,0 +1,29 @@
+# Archivos generados por Maven
+/target/
+
+# Archivos de configuración de IDEs 
+.idea/
+*.iml
+*.classpath
+*.project
+.settings/
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de logs y temporales
+*.log
+*.tmp
+
+# Archivos de configuración que pueden contener credenciales
+src/main/resources/*.properties
+src/main/resources/*.env
+src/main/resources/config/
+
+# Archivos sensibles comunes
+.env
+*.key
+*.pem
+*.crt
+
