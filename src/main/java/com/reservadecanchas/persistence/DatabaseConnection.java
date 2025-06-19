@@ -1,4 +1,4 @@
-package com.reservadecanchas.model;
+package com.reservadecanchas.persistence;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

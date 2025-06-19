@@ -1,5 +1,8 @@
 package com.reservadecanchas.app;
 
+//  //Probando conexion a BD
+//import com.reservadecanchas.persistence.DatabaseConnection;
+//import java.sql.Connection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -19,7 +22,7 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
-//        //Probando conexion a BD
+//        //Probando conexion a BD, quitar comentario lineas 3-5
 //        Connection conn = null;
 //        conn = DatabaseConnection.getConnection();
 

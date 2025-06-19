@@ -6,7 +6,7 @@ module com.reservadecanchas.app {
     exports com.reservadecanchas.app;
     exports com.reservadecanchas.util ;
     exports com.reservadecanchas.controller;    
-    exports com.reservadecanchas.model;
+    exports com.reservadecanchas.persistence;
 
     opens com.reservadecanchas.controller to javafx.fxml;
     opens com.reservadecanchas.util to javafx.fxml;
