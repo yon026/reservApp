@@ -11,5 +11,6 @@ module com.reservadecanchas.app {
     opens com.reservadecanchas.controller to javafx.fxml;
     opens com.reservadecanchas.util to javafx.fxml;
     opens com.reservadecanchas.app to javafx.fxml;
-   
+    opens com.reservadecanchas.persistence to javafx.fxml;
+    opens com.reservadecanchas.model to javafx.base;
 }

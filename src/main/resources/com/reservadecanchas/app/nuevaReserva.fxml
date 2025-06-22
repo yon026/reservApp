@@ -9,7 +9,8 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="425.0" prefWidth="329.0" stylesheets="@../../styles/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.reservadecanchas.controller.NuevaReservaController">
+<AnchorPane id="AnchorPane" prefHeight="425.0" prefWidth="329.0"  xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="com.reservadecanchas.controller.NuevaReservaController">
    <children>
       <Pane layoutX="14.0" layoutY="14.0" prefHeight="407.0" prefWidth="309.0" style="-fx-border-color: #000e81;">
          <children>

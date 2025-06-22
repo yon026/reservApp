@@ -14,6 +14,11 @@ public class ReservaFx {
     private final StringProperty cancha = new SimpleStringProperty();
     private final StringProperty horario = new SimpleStringProperty();
 
+    // Constructor sin ID (útil para nuevas reservas antes de insertarlas en la BD)
+    public ReservaFx(String nombres, String apellidos, String sexo, int edad, LocalDate fecha, String cancha, String horario) {
+        this(0, nombres, apellidos, sexo, edad, fecha, cancha, horario); // El ID será asignado por la BD
+    }
+
     // Constructor completo
     public ReservaFx(int id, String nombres, String apellidos, String sexo, int edad,
             LocalDate fecha, String cancha, String horario) {
