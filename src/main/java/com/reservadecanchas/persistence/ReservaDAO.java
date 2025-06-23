@@ -154,7 +154,7 @@ public class ReservaDAO {
         // NOTA: No incluimos 'id' en el INSERT porque es autoincremental.
         // Usamos Placeholders (?) para todos los valores.
         // RETURNING id o Statement.RETURN_GENERATED_KEYS son para obtener el ID generado.
-        String sql = "INSERT INTO Reservas (nombres, apellidos, fksexo, fkcancha, fkhorario) "
+        String sql = "INSERT INTO Reservas (nombres, apellidos,fecha , fkcancha, fkhorario) "
                 + "VALUES (?, ?, ?, ?, ?)";
 
         try {
