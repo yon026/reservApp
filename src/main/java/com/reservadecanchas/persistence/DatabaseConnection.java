@@ -6,9 +6,9 @@ import java.sql.SQLException;
 
 public class DatabaseConnection {
 
-    private static final String USER = "SA";
-    private static final String PASSWORD = "Terma_0232";
-    private static final String DATABASE_NAME = "ReservasDB";
+    private static final String USER = "Arturo";
+    private static final String PASSWORD = "123456";
+    private static final String DATABASE_NAME = "Reservapp";
     private static final String SERVER_IP = "localhost";
     private static final String PORT = "1433";
 

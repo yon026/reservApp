@@ -37,10 +37,6 @@ public class ReservasController {
     @FXML
     private TableColumn<ReservaFx, String> colApellidos;
     @FXML
-    private TableColumn<ReservaFx, String> colSexo;
-    @FXML
-    private TableColumn<ReservaFx, Integer> colEdad; // Integer para edad
-    @FXML
     private TableColumn<ReservaFx, LocalDate> colFecha; // LocalDate para fecha
     @FXML
     private TableColumn<ReservaFx, String> colCancha;
@@ -58,8 +54,6 @@ public class ReservasController {
         // debe llamar para obtener el valor.
         colNombres.setCellValueFactory(new PropertyValueFactory<>("nombres"));
         colApellidos.setCellValueFactory(new PropertyValueFactory<>("apellidos"));
-        colSexo.setCellValueFactory(new PropertyValueFactory<>("sexo"));
-        colEdad.setCellValueFactory(new PropertyValueFactory<>("edad"));
         colFecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
         colFecha.setCellFactory(column -> new TableCell<ReservaFx, LocalDate>() {
             private final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
