@@ -8,25 +8,21 @@ public class ReservaFx {
     private final IntegerProperty id = new SimpleIntegerProperty();
     private final StringProperty nombres = new SimpleStringProperty();
     private final StringProperty apellidos = new SimpleStringProperty();
-    private final StringProperty sexo = new SimpleStringProperty();
-    private final IntegerProperty edad = new SimpleIntegerProperty();
     private final ObjectProperty<LocalDate> fecha = new SimpleObjectProperty<>();
     private final StringProperty cancha = new SimpleStringProperty();
     private final StringProperty horario = new SimpleStringProperty();
 
     // Constructor sin ID (útil para nuevas reservas antes de insertarlas en la BD)
-    public ReservaFx(String nombres, String apellidos, String sexo, int edad, LocalDate fecha, String cancha, String horario) {
-        this(0, nombres, apellidos, sexo, edad, fecha, cancha, horario); // El ID será asignado por la BD
+    public ReservaFx(String nombres, String apellidos, LocalDate fecha, String cancha, String horario) {
+        this(0, nombres, apellidos, fecha, cancha, horario); // El ID será asignado por la BD
     }
 
     // Constructor completo
-    public ReservaFx(int id, String nombres, String apellidos, String sexo, int edad,
+    public ReservaFx(int id, String nombres, String apellidos,
             LocalDate fecha, String cancha, String horario) {
         this.id.set(id);
         this.nombres.set(nombres);
         this.apellidos.set(apellidos);
-        this.sexo.set(sexo);
-        this.edad.set(edad);
         this.fecha.set(fecha);
         this.cancha.set(cancha);
         this.horario.set(horario);
@@ -43,14 +39,6 @@ public class ReservaFx {
 
     public StringProperty apellidosProperty() {
         return apellidos;
-    }
-
-    public StringProperty sexoProperty() {
-        return sexo;
-    }
-
-    public IntegerProperty edadProperty() {
-        return edad;
     }
 
     public ObjectProperty<LocalDate> fechaProperty() {
@@ -78,14 +66,6 @@ public class ReservaFx {
         return apellidos.get();
     }
 
-    public String getSexo() {
-        return sexo.get();
-    }
-
-    public int getEdad() {
-        return edad.get();
-    }
-
     public LocalDate getFecha() {
         return fecha.get();
     }
@@ -109,14 +89,6 @@ public class ReservaFx {
 
     public void setApellidos(String apellidos) {
         this.apellidos.set(apellidos);
-    }
-
-    public void setSexo(String sexo) {
-        this.sexo.set(sexo);
-    }
-
-    public void setEdad(int edad) {
-        this.edad.set(edad);
     }
 
     public void setFecha(LocalDate fecha) {

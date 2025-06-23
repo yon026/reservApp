@@ -23,10 +23,6 @@ public class NuevaReservaController implements Initializable {
     @FXML
     private TextField txtNuevaApellidos;
     @FXML
-    private TextField txtNuevaEdad;
-    @FXML
-    private ComboBox<String> cbNuevaSexo;
-    @FXML
     private ComboBox<String> cbNuevaCancha;
     @FXML
     private ComboBox<String> cbNuevaHora;
@@ -57,11 +53,6 @@ public class NuevaReservaController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // 1. Poblar ComboBoxes (igual que te expliqué antes)
-        ObservableList<String> sexos = FXCollections.observableArrayList(referenciaDAO.getDescripcionesReferencia("Sexos", "descripcion"));
-        cbNuevaSexo.setItems(sexos);
-        if (!sexos.isEmpty()) {
-            cbNuevaSexo.getSelectionModel().select("");
-        }
 
         ObservableList<String> canchas = FXCollections.observableArrayList(referenciaDAO.getDescripcionesReferencia("Canchas", "nombreCancha"));
         cbNuevaCancha.setItems(canchas);
@@ -80,7 +71,6 @@ public class NuevaReservaController implements Initializable {
     private void saveReserva(ActionEvent event) {
         // 1. Validar la entrada de datos 
         if (txtNuevaNombres.getText().isEmpty() || txtNuevaApellidos.getText().isEmpty()
-                || txtNuevaEdad.getText().isEmpty() || cbNuevaSexo.getValue() == null
                 || cbNuevaCancha.getValue() == null || cbNuevaHora.getValue() == null
                 || dpFechaNuevaReserva.getValue() == null) {
 
@@ -88,24 +78,10 @@ public class NuevaReservaController implements Initializable {
             return;
         }
 
-        int edad;
-        try {
-            edad = Integer.parseInt(txtNuevaEdad.getText());
-            if (edad <= 0) {
-                ShowAlert.show(Alert.AlertType.WARNING, "Edad Inválida", "La edad debe ser un número positivo.");
-                return;
-            }
-        } catch (NumberFormatException e) {
-            ShowAlert.show(Alert.AlertType.WARNING, "Edad Inválida", "La edad debe ser un número válido.");
-            return;
-        }
-
         // 2. Crear el objeto ReservaFx con los datos del formulario
         ReservaFx nuevaReserva = new ReservaFx(
                 txtNuevaNombres.getText(),
                 txtNuevaApellidos.getText(),
-                cbNuevaSexo.getValue(),
-                edad,
                 dpFechaNuevaReserva.getValue(),
                 cbNuevaCancha.getValue(),
                 cbNuevaHora.getValue()

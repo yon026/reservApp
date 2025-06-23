@@ -26,8 +26,7 @@
         <TableColumn fx:id="colHorario"   text="Horario"   prefWidth="80"/>
         <TableColumn fx:id="colNombres"  text="Nombres"  prefWidth="100"/>
         <TableColumn fx:id="colApellidos" text="Apellidos" prefWidth="100"/>
-        <TableColumn fx:id="colSexo"      text="Sexo"      prefWidth="80"/>
-        <TableColumn fx:id="colEdad"      text="Edad"      prefWidth="60"/>
+        
       </columns>
   </TableView>
    </children>

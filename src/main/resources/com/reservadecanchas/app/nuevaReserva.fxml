@@ -14,14 +14,10 @@
       <Pane layoutX="14.0" layoutY="14.0" prefHeight="354.0" prefWidth="309.0" style="-fx-border-color: #000e81;">
          <children>
             <Label layoutX="8.0" layoutY="19.0" text="Nombre:" />
-            <Label layoutX="30.0" layoutY="108.0" text="Sexo:" />
-            <Label layoutX="29.0" layoutY="157.0" text="Edad:" />
             <Label layoutX="19.0" layoutY="202.0" text="FECHA:" />
             <Label layoutX="9.0" layoutY="60.0" text="Apellido:" />
             <TextField fx:id="txtNuevaNombres" layoutX="67.0" layoutY="15.0" prefHeight="26.0" prefWidth="191.0" />
             <TextField fx:id="txtNuevaApellidos" layoutX="67.0" layoutY="57.0" prefHeight="26.0" prefWidth="191.0" />
-            <TextField fx:id="txtNuevaEdad" layoutX="69.0" layoutY="154.0" prefHeight="26.0" prefWidth="64.0" />
-            <ComboBox fx:id="cbNuevaSexo" layoutX="67.0" layoutY="104.0" prefHeight="26.0" prefWidth="191.0" />
             <DatePicker fx:id="dpFechaNuevaReserva" layoutX="68.0" layoutY="197.0" />
             <ComboBox fx:id="cbNuevaCancha" layoutX="67.0" layoutY="238.0" prefHeight="26.0" prefWidth="191.0" />
             <ComboBox fx:id="cbNuevaHora" layoutX="67.0" layoutY="276.0" prefHeight="26.0" prefWidth="191.0" />

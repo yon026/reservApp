@@ -28,10 +28,6 @@ public class EditarReservaController implements Initializable {
     @FXML
     private TextField txtEditarApellidos;
     @FXML
-    private TextField txtEditarEdad;
-    @FXML
-    private ComboBox<String> cbEditarSexo;
-    @FXML
     private ComboBox<String> cbEditarCancha;
     @FXML
     private ComboBox<String> cbEditarHora;
@@ -64,9 +60,7 @@ public class EditarReservaController implements Initializable {
         }
         txtEditarNombres.setText(reserva.getNombres());
         txtEditarApellidos.setText(reserva.getApellidos());
-        txtEditarEdad.setText(String.valueOf(reserva.getEdad())); // Convertir int a String
         dpFechaEditarReserva.setValue(reserva.getFecha());
-        cbEditarSexo.getSelectionModel().select(reserva.getSexo());
         cbEditarCancha.getSelectionModel().select(reserva.getCancha());
         cbEditarHora.getSelectionModel().select(reserva.getHorario());
     }
@@ -82,9 +76,6 @@ public class EditarReservaController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Poblar ComboBoxes (igual que en NuevaReservaController)
-        ObservableList<String> sexos = FXCollections.observableArrayList(referenciaDAO.getDescripcionesReferencia("Sexos", "descripcion"));
-        cbEditarSexo.setItems(sexos);
-
         ObservableList<String> canchas = FXCollections.observableArrayList(referenciaDAO.getDescripcionesReferencia("Canchas", "nombreCancha"));
         cbEditarCancha.setItems(canchas);
 
@@ -97,7 +88,6 @@ public class EditarReservaController implements Initializable {
     private void actualizarReserva(ActionEvent event) {
         // 1. Validar la entrada de datos (¡Similar a NuevaReservaController!)
         if (txtEditarNombres.getText().isEmpty() || txtEditarApellidos.getText().isEmpty()
-                || txtEditarEdad.getText().isEmpty() || cbEditarSexo.getValue() == null
                 || cbEditarCancha.getValue() == null || cbEditarHora.getValue() == null
                 || dpFechaEditarReserva.getValue() == null) {
 
@@ -105,17 +95,6 @@ public class EditarReservaController implements Initializable {
             return;
         }
 
-        int edad;
-        try {
-            edad = Integer.parseInt(txtEditarEdad.getText());
-            if (edad <= 0) {
-                ShowAlert.show(Alert.AlertType.WARNING, "Edad Inválida", "La edad debe ser un número positivo.");
-                return;
-            }
-        } catch (NumberFormatException e) {
-            ShowAlert.show(Alert.AlertType.WARNING, "Edad Inválida", "La edad debe ser un número válido.");
-            return;
-        }
 
         // Asegurarse de que hay una reserva para editar
         if (reservaAEditar == null) {
@@ -126,8 +105,6 @@ public class EditarReservaController implements Initializable {
         // 2. Actualizar el objeto ReservaFx con los nuevos datos del formulario
         reservaAEditar.setNombres(txtEditarNombres.getText());
         reservaAEditar.setApellidos(txtEditarApellidos.getText());
-        reservaAEditar.setSexo(cbEditarSexo.getValue());
-        reservaAEditar.setEdad(edad);
         reservaAEditar.setFecha(dpFechaEditarReserva.getValue());
         reservaAEditar.setCancha(cbEditarCancha.getValue());
         reservaAEditar.setHorario(cbEditarHora.getValue());

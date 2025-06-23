@@ -23,15 +23,11 @@ public class ReservaDAO {
                 + // Ahora sí seleccionamos el ID para el objeto Reserva
                 "    R.nombres, "
                 + "    R.apellidos, "
-                + "    S.descripcion AS Sexo, "
-                + "    R.edad, "
                 + "    R.fecha, "
                 + "    C.nombreCancha AS Cancha, "
                 + "    H.hora AS Horario "
                 + "FROM "
                 + "    Reservas R "
-                + "JOIN "
-                + "    Sexos S ON R.fksexo = S.id "
                 + "JOIN "
                 + "    Canchas C ON R.fkcancha = C.id "
                 + "JOIN "
@@ -55,8 +51,6 @@ public class ReservaDAO {
                             rs.getInt("id"),
                             rs.getString("nombres"),
                             rs.getString("apellidos"),
-                            rs.getString("Sexo"),
-                            rs.getInt("edad"),
                             rs.getDate("fecha").toLocalDate(), // Convierte java.sql.Date a LocalDate
                             rs.getString("Cancha"),
                             rs.getTime("Horario").toLocalTime().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm")) // Formatea a HH:MM
@@ -93,15 +87,11 @@ public class ReservaDAO {
                 + // Ahora sí seleccionamos el ID para el objeto Reserva
                 "    R.nombres, "
                 + "    R.apellidos, "
-                + "    S.descripcion AS Sexo, "
-                + "    R.edad, "
                 + "    R.fecha, "
                 + "    C.nombreCancha AS Cancha, "
                 + "    H.hora AS Horario "
                 + "FROM "
                 + "    Reservas R "
-                + "JOIN "
-                + "    Sexos S ON R.fksexo = S.id "
                 + "JOIN "
                 + "    Canchas C ON R.fkcancha = C.id "
                 + "JOIN "
@@ -122,8 +112,6 @@ public class ReservaDAO {
                             rs.getInt("id"),
                             rs.getString("nombres"),
                             rs.getString("apellidos"),
-                            rs.getString("Sexo"),
-                            rs.getInt("edad"),
                             rs.getDate("fecha").toLocalDate(), // Convierte java.sql.Date a LocalDate
                             rs.getString("Cancha"),
                             rs.getTime("Horario").toLocalTime().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm")) // Formatea a HH:MM
@@ -166,8 +154,8 @@ public class ReservaDAO {
         // NOTA: No incluimos 'id' en el INSERT porque es autoincremental.
         // Usamos Placeholders (?) para todos los valores.
         // RETURNING id o Statement.RETURN_GENERATED_KEYS son para obtener el ID generado.
-        String sql = "INSERT INTO Reservas (nombres, apellidos, fksexo, edad, fecha, fkcancha, fkhorario) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Reservas (nombres, apellidos, fksexo, fkcancha, fkhorario) "
+                + "VALUES (?, ?, ?, ?, ?)";
 
         try {
             conn = DatabaseConnection.getConnection();
@@ -177,8 +165,7 @@ public class ReservaDAO {
 
                 // Mapeamos los valores del objeto ReservaFx a los placeholders (?)
                 // Necesitamos obtener los IDs de las tablas de referencia (Sexos, Canchas, Horarios)
-                // 1. Obtener ID de Sexo desde la descripción (ej: "Masculino" -> 1)
-                int fkSexo = getIdFromDescripcion("Sexos", "descripcion", reserva.getSexo());
+
                 // 2. Obtener ID de Cancha desde la descripción (ej: "Futbol" -> 1)
                 int fkCancha = getIdFromDescripcion("Canchas", "nombreCancha", reserva.getCancha());
                 // 3. Obtener ID de Horario desde la descripción (ej: "16:00" -> 1)
@@ -186,11 +173,9 @@ public class ReservaDAO {
 
                 pstmt.setString(1, reserva.getNombres());
                 pstmt.setString(2, reserva.getApellidos());
-                pstmt.setInt(3, fkSexo);        // ID del sexo
-                pstmt.setInt(4, reserva.getEdad());
-                pstmt.setDate(5, Date.valueOf(reserva.getFecha())); // Convierte LocalDate a java.sql.Date
-                pstmt.setInt(6, fkCancha);      // ID de la cancha
-                pstmt.setInt(7, fkHorario);     // ID del horario
+                pstmt.setDate(3, Date.valueOf(reserva.getFecha())); // Convierte LocalDate a java.sql.Date
+                pstmt.setInt(4, fkCancha);      // ID de la cancha
+                pstmt.setInt(5, fkHorario);     // ID del horario
 
                 // Ejecutamos la inserción
                 int affectedRows = pstmt.executeUpdate();
@@ -294,7 +279,7 @@ public class ReservaDAO {
 
         // La consulta SQL para actualizar la reserva.
         // Usamos SET para cada columna que puede ser actualizada, y WHERE id = ? para especificar cuál.
-        String sql = "UPDATE Reservas SET nombres = ?, apellidos = ?, fksexo = ?, edad = ?, "
+        String sql = "UPDATE Reservas SET nombres = ?, apellidos = ?,"
                 + "fecha = ?, fkcancha = ?, fkhorario = ? WHERE id = ?";
 
         try {
@@ -303,19 +288,16 @@ public class ReservaDAO {
                 pstmt = conn.prepareStatement(sql);
 
                 // Obtenemos los IDs de las tablas de referencia, igual que en insertReserva
-                int fkSexo = getIdFromDescripcion("Sexos", "descripcion", reserva.getSexo());
                 int fkCancha = getIdFromDescripcion("Canchas", "nombreCancha", reserva.getCancha());
                 int fkHorario = getIdFromDescripcion("Horarios", "hora", reserva.getHorario());
 
                 // Mapeamos los valores del objeto ReservaFx a los placeholders (?)
                 pstmt.setString(1, reserva.getNombres());
                 pstmt.setString(2, reserva.getApellidos());
-                pstmt.setInt(3, fkSexo);
-                pstmt.setInt(4, reserva.getEdad());
-                pstmt.setDate(5, Date.valueOf(reserva.getFecha()));
-                pstmt.setInt(6, fkCancha);
-                pstmt.setInt(7, fkHorario);
-                pstmt.setInt(8, reserva.getId()); // ¡Importante! El ID para la cláusula WHERE
+                pstmt.setDate(3, Date.valueOf(reserva.getFecha()));
+                pstmt.setInt(4, fkCancha);
+                pstmt.setInt(5, fkHorario);
+                pstmt.setInt(6, reserva.getId()); // ¡Importante! El ID para la cláusula WHERE
 
                 int affectedRows = pstmt.executeUpdate();
 
