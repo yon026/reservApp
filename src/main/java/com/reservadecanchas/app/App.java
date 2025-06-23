@@ -21,8 +21,8 @@ public class App extends Application {
             // Verifica si la tabla 'Reservas' existe
             if (!DatabaseUtils.tableExists(conn, "Reservas")) {
                 System.out.println("La tabla 'Reservas' no existe. Creando tablas y datos iniciales...");
-                DatabaseUtils.executeSqlScript(conn, "/sql/reservappCreacionBd.sql"); // Este es tu script que creaste
-                DatabaseUtils.executeSqlScript(conn, "/sql/reservappCargaDatosBd.sql"); // Si tienes datos para Sexos, Canchas, Horarios
+                DatabaseUtils.executeSqlScript(conn, "/sql/ReservaBD_Creacion.sql"); // Creacion de tablas
+                DatabaseUtils.executeSqlScript(conn, "/sql/ReservaBD_Carga.sql"); // Datos de prueba
 
             } else {
                 System.out.println("La tabla 'Reservas' ya existe. No se recreará.");

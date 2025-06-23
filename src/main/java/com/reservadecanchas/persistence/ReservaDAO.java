@@ -154,7 +154,7 @@ public class ReservaDAO {
         // NOTA: No incluimos 'id' en el INSERT porque es autoincremental.
         // Usamos Placeholders (?) para todos los valores.
         // RETURNING id o Statement.RETURN_GENERATED_KEYS son para obtener el ID generado.
-        String sql = "INSERT INTO Reservas (nombres, apellidos,fecha , fkcancha, fkhorario) "
+        String sql = "INSERT INTO Reservas (nombres, apellidos, fecha , fkcancha, fkhorario) "
                 + "VALUES (?, ?, ?, ?, ?)";
 
         try {
@@ -165,7 +165,6 @@ public class ReservaDAO {
 
                 // Mapeamos los valores del objeto ReservaFx a los placeholders (?)
                 // Necesitamos obtener los IDs de las tablas de referencia (Sexos, Canchas, Horarios)
-
                 // 2. Obtener ID de Cancha desde la descripción (ej: "Futbol" -> 1)
                 int fkCancha = getIdFromDescripcion("Canchas", "nombreCancha", reserva.getCancha());
                 // 3. Obtener ID de Horario desde la descripción (ej: "16:00" -> 1)
