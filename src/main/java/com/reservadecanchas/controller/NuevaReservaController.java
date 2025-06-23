@@ -1,24 +1,136 @@
 package com.reservadecanchas.controller;
 
-import com.reservadecanchas.util.CargadorVistas;
-import javafx.fxml.FXML;
+import com.reservadecanchas.model.ReservaFx;
+import com.reservadecanchas.persistence.ReferenciaDAO;
+import com.reservadecanchas.persistence.ReservaDAO;
 import javafx.stage.Stage;
-import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import java.net.URL;
+import java.time.LocalDate;
+import java.util.ResourceBundle;
+import com.reservadecanchas.util.ShowAlert;
+import javafx.fxml.FXML;
 
-public class NuevaReservaController {
+public class NuevaReservaController implements Initializable {
 
     @FXML
-    private void switchToReservas(ActionEvent event) throws IOException {
+    private TextField txtNuevaNombres;
+    @FXML
+    private TextField txtNuevaApellidos;
+    @FXML
+    private TextField txtNuevaEdad;
+    @FXML
+    private ComboBox<String> cbNuevaSexo;
+    @FXML
+    private ComboBox<String> cbNuevaCancha;
+    @FXML
+    private ComboBox<String> cbNuevaHora;
+    @FXML
+    private DatePicker dpFechaNuevaReserva;
 
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        CargadorVistas.cambiarVista(stage, "/com/reservadecanchas/app/reservas.fxml", "Reservas");
+    private ReservaDAO reservaDAO;
+    private ReferenciaDAO referenciaDAO;
+    private LocalDate fechaInicial; // Para guardar la fecha que vino de la vista principal
+    private LocalDate fechaReservaRealizada;
+
+    // Constructor: Inicializa ambos DAO
+    public NuevaReservaController() {
+        this.reservaDAO = new ReservaDAO();
+        this.referenciaDAO = new ReferenciaDAO();
+    }
+
+    // Método para recibir la fecha seleccionada desde la vista principal
+    public void setFechaSeleccionada(LocalDate fecha) {
+        this.fechaInicial = fecha;
+        dpFechaNuevaReserva.setValue(fecha); // Establece la fecha en el DatePicker de la nueva ventana
+    }
+
+    public LocalDate getFechaReservaRealizada() {
+        return fechaReservaRealizada;
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        // 1. Poblar ComboBoxes (igual que te expliqué antes)
+        ObservableList<String> sexos = FXCollections.observableArrayList(referenciaDAO.getDescripcionesReferencia("Sexos", "descripcion"));
+        cbNuevaSexo.setItems(sexos);
+        if (!sexos.isEmpty()) {
+            cbNuevaSexo.getSelectionModel().select("");
+        }
+
+        ObservableList<String> canchas = FXCollections.observableArrayList(referenciaDAO.getDescripcionesReferencia("Canchas", "nombreCancha"));
+        cbNuevaCancha.setItems(canchas);
+        if (!canchas.isEmpty()) {
+            cbNuevaCancha.getSelectionModel().selectFirst();
+        }
+
+        ObservableList<String> horarios = FXCollections.observableArrayList(referenciaDAO.getDescripcionesReferencia("Horarios", "hora"));
+        cbNuevaHora.setItems(horarios);
+        if (!horarios.isEmpty()) {
+            cbNuevaHora.getSelectionModel().selectFirst();
+        }
     }
 
     @FXML
-    private void salirNuevaReserva(ActionEvent event) {
+    private void saveReserva(ActionEvent event) {
+        // 1. Validar la entrada de datos 
+        if (txtNuevaNombres.getText().isEmpty() || txtNuevaApellidos.getText().isEmpty()
+                || txtNuevaEdad.getText().isEmpty() || cbNuevaSexo.getValue() == null
+                || cbNuevaCancha.getValue() == null || cbNuevaHora.getValue() == null
+                || dpFechaNuevaReserva.getValue() == null) {
+
+            ShowAlert.show(Alert.AlertType.WARNING, "Campos Incompletos", "Por favor, complete todos los campos.");
+            return;
+        }
+
+        int edad;
+        try {
+            edad = Integer.parseInt(txtNuevaEdad.getText());
+            if (edad <= 0) {
+                ShowAlert.show(Alert.AlertType.WARNING, "Edad Inválida", "La edad debe ser un número positivo.");
+                return;
+            }
+        } catch (NumberFormatException e) {
+            ShowAlert.show(Alert.AlertType.WARNING, "Edad Inválida", "La edad debe ser un número válido.");
+            return;
+        }
+
+        // 2. Crear el objeto ReservaFx con los datos del formulario
+        ReservaFx nuevaReserva = new ReservaFx(
+                txtNuevaNombres.getText(),
+                txtNuevaApellidos.getText(),
+                cbNuevaSexo.getValue(),
+                edad,
+                dpFechaNuevaReserva.getValue(),
+                cbNuevaCancha.getValue(),
+                cbNuevaHora.getValue()
+        );
+
+        // 3. Llamar al DAO para insertar la reserva
+        boolean insertado = reservaDAO.insertReserva(nuevaReserva);
+
+        if (insertado) {
+            ShowAlert.show(Alert.AlertType.INFORMATION, "Reserva Exitosa", "La reserva ha sido guardada correctamente.");
+            this.fechaReservaRealizada = dpFechaNuevaReserva.getValue();// ¡Guardamos la fecha de la reserva!
+            // 4. Cerrar la ventana de Nueva Reserva
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.close();
+        } else {
+            ShowAlert.show(Alert.AlertType.ERROR, "Error al Reservar", "No se pudo guardar la reserva. Verifique si la cancha y el horario ya están ocupados para esa fecha.");
+        }
+    }
+
+    @FXML
+    private void cancelarNuevaReserva(ActionEvent event) {
+        this.fechaReservaRealizada = null;
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
+
     }
+
 }

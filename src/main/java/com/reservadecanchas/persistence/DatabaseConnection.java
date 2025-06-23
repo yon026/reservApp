@@ -20,7 +20,6 @@ public class DatabaseConnection {
 
     // Constructor privado para implementar el patrón Singleton
     private DatabaseConnection() {
-        // Constructor vacío
     }
 
     // Método para obtener la única instancia de la conexión

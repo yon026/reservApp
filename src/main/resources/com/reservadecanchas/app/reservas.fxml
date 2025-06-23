@@ -11,10 +11,10 @@
    <children>
       <Pane layoutX="117.0" layoutY="14.0" prefHeight="99.0" prefWidth="362.0" style="-fx-border-color: #000e81;">
          <children>
-            <DatePicker fx:id="dpFechaReserva" layoutX="85.0" layoutY="28.0" />
+            <DatePicker fx:id="dpFechaPrincipal" layoutX="85.0" layoutY="28.0" />
             <Button layoutX="84.0" layoutY="64.0" mnemonicParsing="false" onAction="#switchToEditarReserva" prefHeight="26.0" prefWidth="71.0" text="EDITAR" />
-            <Button layoutX="267.0" layoutY="64.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="91.0" text="ELIMINAR" />
-            <Button layoutX="165.0" layoutY="64.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="91.0" onAction="#onVerTodasReservas"  text="VER TODAS" />
+            <Button layoutX="267.0" layoutY="64.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="91.0" onAction="#onEliminar"  text="ELIMINAR" />
+            <Button layoutX="165.0" layoutY="64.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="91.0" onAction="#onVerTodas"  text="VER TODAS" />
             <Button layoutX="9.0" layoutY="64.0" mnemonicParsing="false" onAction="#switchToNuevaReserva" prefHeight="26.0" prefWidth="65.0" text="NUEVA" />
          </children>
       </Pane>

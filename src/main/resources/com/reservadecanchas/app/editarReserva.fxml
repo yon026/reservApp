@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="425.0" prefWidth="329.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" 
-            fx:controller="com.reservadecanchas.controller.EditarReservaController">
+<AnchorPane id="AnchorPane" prefHeight="425.0" prefWidth="329.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.reservadecanchas.controller.EditarReservaController">
    <children>
       <Pane layoutX="14.0" layoutY="14.0" prefHeight="407.0" prefWidth="309.0" style="-fx-border-color: #000e81;">
          <children>
@@ -20,20 +19,26 @@
             <Label layoutX="29.0" layoutY="202.0" text="Edad:" />
             <Label layoutX="19.0" layoutY="247.0" text="FECHA:" />
             <Label layoutX="9.0" layoutY="105.0" text="Apellido:" />
-            <TextField fx:id="txtId" layoutX="67.0" layoutY="20.0" prefHeight="26.0" prefWidth="64.0" />
-            <TextField fx:id="txtNombres" layoutX="67.0" layoutY="60.0" prefHeight="26.0" prefWidth="191.0" />
-            <TextField fx:id="txtApellidos" layoutX="67.0" layoutY="102.0" prefHeight="26.0" prefWidth="191.0" />
-            <TextField fx:id="txtEdad" layoutX="69.0" layoutY="199.0" prefHeight="26.0" prefWidth="64.0" />
-            <ComboBox fx:id="cbSexo" layoutX="67.0" layoutY="149.0" prefHeight="26.0" prefWidth="191.0" />
-            <DatePicker fx:id="fechaNacimiento" layoutX="68.0" layoutY="242.0" />
-            <ComboBox fx:id="cbSexo1" layoutX="67.0" layoutY="283.0" prefHeight="26.0" prefWidth="191.0" />
-            <ComboBox fx:id="cbSexo11" layoutX="67.0" layoutY="321.0" prefHeight="26.0" prefWidth="191.0" />
+            <TextField fx:id="txtEditarId" disable="true" editable="false" layoutX="67.0" layoutY="20.0" prefHeight="26.0" prefWidth="64.0" />
+            <TextField fx:id="txtEditarNombres" layoutX="67.0" layoutY="60.0" prefHeight="26.0" prefWidth="191.0" />
+            <TextField fx:id="txtEditarApellidos" layoutX="67.0" layoutY="102.0" prefHeight="26.0" prefWidth="191.0" />
+            <TextField fx:id="txtEditarEdad" layoutX="69.0" layoutY="199.0" prefHeight="26.0" prefWidth="64.0" />
+            <ComboBox fx:id="cbEditarSexo" layoutX="67.0" layoutY="149.0" prefHeight="26.0" prefWidth="191.0" />
+            <DatePicker fx:id="dpFechaEditarReserva" layoutX="68.0" layoutY="242.0" />
+            <ComboBox fx:id="cbEditarCancha" layoutX="67.0" layoutY="283.0" prefHeight="26.0" prefWidth="191.0" />
+            <ComboBox fx:id="cbEditarHora" layoutX="67.0" layoutY="321.0" prefHeight="26.0" prefWidth="191.0" />
             <Label layoutX="14.0" layoutY="291.0" text="Cancha:" />
             <Label layoutX="30.0" layoutY="326.0" text="Hora:" />
-            <Button fx:id="btGuardar" layoutX="63.0" layoutY="356.0" mnemonicParsing="false" onAction="#salirEditarReserva"  text="GUARDAR CAMBIOS">
+            <Button fx:id="btEditarGuardar" layoutX="67.0" layoutY="358.0" mnemonicParsing="false" onAction="#actualizarReserva" text="EDITAR">
                <font>
                   <Font size="18.0" />
-               </font></Button>
+               </font>
+            </Button>
+            <Button fx:id="btEditarCancelar" layoutX="182.0" layoutY="358.0" mnemonicParsing="false" onAction="#cancelarEditarReserva" text="CANCELAR">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
    </children>

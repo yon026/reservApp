@@ -11,7 +11,6 @@ public class BienvenidaController {
 
     @FXML
     private void switchToReservas() throws IOException {
-        //App.setRoot("/com/reservadecanchas/app/reservas.fxml");
         GestorEscenas.cambiarEscena("/com/reservadecanchas/app/reservas.fxml");
     }
 
