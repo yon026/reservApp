@@ -2,10 +2,10 @@ package com.reservadecanchas.controller;
 
 import com.reservadecanchas.model.ReservaFx;
 import com.reservadecanchas.persistence.ReservaDAO;
-import javafx.fxml.FXML;
+
 import javafx.stage.Stage;
 import com.reservadecanchas.util.CargadorVistas;
-import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.fxml.FXML;
