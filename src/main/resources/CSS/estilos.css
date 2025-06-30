@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'EDO';
+    src: url('../fonts/edo2.ttf');
+}
+
+.titulo {
+    -fx-font-family: 'EDO';
+    -fx-font-size: 48px;
+    -fx-text-fill: #000e81;
+}
+
