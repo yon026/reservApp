@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
 
 public class App extends Application {
 
@@ -37,6 +38,8 @@ public class App extends Application {
         GestorEscenas.setStage(primaryStage);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/reservadecanchas/app/bienvenida.fxml"));
         Scene scene = new Scene(loader.load(), 640, 480);
+        Image icon = new Image(getClass().getResourceAsStream("/img/Logotipo.png"));
+        primaryStage.getIcons().add(icon);
         primaryStage.setScene(scene);
         primaryStage.centerOnScreen();
         primaryStage.setTitle("Sistema de reservas de canchas");
