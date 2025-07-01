@@ -29,3 +29,5 @@ INSERT INTO Reservas (nombres, apellidos, fecha, fkcancha, fkhorario) VALUES
 ('Valeria', 'Torres','2025-06-19', 3, 9),--Femenino, 29, 19/06, Voley, 00:00
 ('Gabriel', 'Ruiz', '2025-06-20', 1, 1); --Masculino, 45, 19/06, Futbol, 16:00
 
+--Datos para registro de operadores
+INSERT INTO Usuarios VALUES('TestUserApp','Contrasenia!');

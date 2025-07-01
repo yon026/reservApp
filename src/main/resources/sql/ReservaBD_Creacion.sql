@@ -31,3 +31,9 @@ ADD CONSTRAINT FK_Reservas_Horarios FOREIGN KEY (fkhorario) REFERENCES Horarios(
 --Incorporando Restriccion UNIQUE (para evitar sobre-reservas en una misma /fecha/cancha/hora)
 ALTER TABLE Reservas
 ADD CONSTRAINT UQ_FechaCanchaHorario UNIQUE (fecha, fkcancha, fkhorario);
+
+CREATE TABLE Usuarios (
+    id INT PRIMARY KEY IDENTITY,
+    nombre_usuario VARCHAR(50) UNIQUE NOT NULL,
+    contrasenia VARCHAR(100) NOT NULL
+);

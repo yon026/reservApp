@@ -2,6 +2,8 @@ package com.reservadecanchas.persistence;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DatabaseConnection {
@@ -53,5 +55,26 @@ public class DatabaseConnection {
         } finally {
             connection = null; // Permitir una nueva conexión si se necesita
         }
+    }
+
+// Metodo para validar la conexion
+    public static boolean validarUsuario(String usuario, String contrasenia) {
+        String query = "SELECT COUNT(*) FROM Usuarios WHERE nombre_usuario = ? AND contrasenia = ?";
+
+        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setString(1, usuario);
+            stmt.setString(2, contrasenia);
+
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
     }
 }
