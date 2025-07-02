@@ -1,11 +1,44 @@
-@font-face {
-    font-family: 'EDO';
-    src: url('../fonts/edo2.ttf');
+.root {
+    -fx-background-color: #0B1A2C;
+    -fx-text-fill: white
 }
 
-.titulo {
-    -fx-font-family: 'EDO';
-    -fx-font-size: 48px;
-    -fx-text-fill: #000e81;
+.button {
+    -fx-background-color:  #51a36b;
+    -fx-text-fill: white;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
+    -fx-padding: 8 ;
 }
 
+.button:hover {
+    -fx-background-color: #1565C0;
+}
+
+.table-view {
+    -fx-background-color: #0B1A2C;
+    -fx-table-cell-border-color: transparent;
+    -fx-padding: 8;
+}
+
+.table-view .table-cell {
+    -fx-text-fill: #B0BEC5;
+    -fx-background-color: #0B1A2C;
+    -fx-alignment: CENTER;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #10283E;
+}
+
+.table-row-cell:even {
+    -fx-background-color: #0B1A2C;
+}
+
+.text-field, .date-picker, .combo-box {
+    -fx-background-color: #0F2236;
+    -fx-text-fill: #E0E0E0;
+    -fx-background-radius: 8;
+    
+}

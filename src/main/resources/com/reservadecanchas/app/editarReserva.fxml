@@ -9,26 +9,26 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="335.0" prefWidth="329.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.reservadecanchas.controller.EditarReservaController">
+<AnchorPane id="AnchorPane" prefHeight="335.0" prefWidth="329.0" style="-fx-background-color: #021b34;" stylesheets="@../../../CSS/estilos.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.reservadecanchas.controller.EditarReservaController">
    <children>
-      <Pane layoutX="7.0" layoutY="5.0" prefHeight="327.0" prefWidth="309.0" style="-fx-border-color: #000e81;">
+      <Pane layoutX="10.0" layoutY="4.0" prefHeight="327.0" prefWidth="309.0" style="-fx-border-color: #4ea46a;">
          <children>
-            <Label layoutX="11.0" layoutY="13.0" text="Nombre:" />
-            <Label layoutX="26.0" layoutY="109.0" text="Fecha:" />
-            <Label layoutX="12.0" layoutY="64.0" text="Apellido:" />
+            <Label layoutX="11.0" layoutY="13.0" style="-fx-text-fill: white;" text="Nombre:" />
+            <Label layoutX="26.0" layoutY="109.0" style="-fx-text-fill: white;" text="Fecha:" />
+            <Label layoutX="12.0" layoutY="64.0" style="-fx-text-fill: white;" text="Apellido:" />
             <TextField fx:id="txtEditarNombres" layoutX="67.0" layoutY="8.0" prefHeight="26.0" prefWidth="191.0" />
             <TextField fx:id="txtEditarApellidos" layoutX="67.0" layoutY="59.0" prefHeight="26.0" prefWidth="191.0" />
             <DatePicker fx:id="dpFechaEditarReserva" layoutX="67.0" layoutY="106.0" prefHeight="25.0" prefWidth="191.0" />
             <ComboBox fx:id="cbEditarCancha" layoutX="67.0" layoutY="152.0" prefHeight="26.0" prefWidth="191.0" />
             <ComboBox fx:id="cbEditarHora" layoutX="67.0" layoutY="204.0" prefHeight="26.0" prefWidth="191.0" />
-            <Label layoutX="18.0" layoutY="208.0" text="Cancha:" />
-            <Label layoutX="32.0" layoutY="156.0" text="Hora:" />
-            <Button fx:id="btEditarGuardar" layoutX="57.0" layoutY="282.0" mnemonicParsing="false" onAction="#actualizarReserva" text="EDITAR">
+            <Label layoutX="18.0" layoutY="208.0" style="-fx-text-fill: white;" text="Cancha:" />
+            <Label layoutX="32.0" layoutY="156.0" style="-fx-text-fill: white;" text="Hora:" />
+            <Button fx:id="btEditarGuardar" layoutX="67.0" layoutY="282.0" mnemonicParsing="false" onAction="#actualizarReserva" style="-fx-background-color: #51a36b; -fx-text-fill: white; -fx-background-radius: 8; -fx-transition: all 0.3s ease;" text="EDITAR">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="btEditarCancelar" layoutX="161.0" layoutY="283.0" mnemonicParsing="false" onAction="#cancelarEditarReserva" prefHeight="38.0" prefWidth="80.0" text="CANCELAR">
+            <Button fx:id="btEditarCancelar" layoutX="163.0" layoutY="282.0" mnemonicParsing="false" onAction="#cancelarEditarReserva" prefHeight="36.0" prefWidth="89.0" style="-fx-background-color: #123c30; -fx-text-fill: white; -fx-background-radius: 8;" text="CANCELAR">
                <font>
                   <Font size="12.0" />
                </font>
