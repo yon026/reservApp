@@ -10,9 +10,9 @@
 
 <AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="640.0" style="-fx-background-color: #0B1A2C;" stylesheets="@../../../CSS/estilos.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.reservadecanchas.controller.ReservasController">
    <children>
-      <Pane layoutX="139.0" layoutY="14.0" prefHeight="99.0" prefWidth="362.0" style="-fx-border-color: #4ea46a;">
+      <Pane layoutX="83.0" layoutY="14.0" prefHeight="99.0" prefWidth="463.0" style="-fx-border-color: #4ea46a;">
          <children>
-            <DatePicker fx:id="dpFechaPrincipal" layoutX="89.0" layoutY="9.0" style="-fx-border-radius: 8; -fx-text-field: #0a1a3d;">
+            <DatePicker fx:id="dpFechaPrincipal" layoutX="144.0" layoutY="9.0" style="-fx-border-radius: 8; -fx-text-field: #0a1a3d;">
                <styleClass>
                   <String fx:value="date-picker" />
                   <String fx:value="text-field" />
@@ -21,6 +21,7 @@
             <Button layoutX="264.0" layoutY="55.0" mnemonicParsing="false" onAction="#onEliminar" prefHeight="26.0" prefWidth="91.0" style="-fx-background-color: #123c30; -fx-text-fill: white; -fx-border-radius: 8;" text="ELIMINAR" />
             <Button layoutX="161.0" layoutY="55.0" mnemonicParsing="false" onAction="#onVerTodas" prefHeight="26.0" prefWidth="91.0" style="-fx-background-color: #51a36b; -fx-text-fill: white; -fx-border-radius: 8;" text="VER TODAS" />
             <Button layoutX="7.0" layoutY="55.0" mnemonicParsing="false" onAction="#switchToNuevaReserva" prefHeight="26.0" prefWidth="65.0" style="-fx-background-color: #51a36b; -fx-text-fill: white; -fx-border-radius: 8;" stylesheets="@../../../CSS/estilos.css" text="NUEVA" />
+            <Button layoutX="367.0" layoutY="55.0" mnemonicParsing="false" onAction="#onExportar" prefHeight="36.0" prefWidth="91.0" style="-fx-background-color: #51a36b; -fx-text-fill: white; -fx-border-radius: 8;" text="EXPORTAR" />
          </children>
       </Pane>
       <TableView fx:id="tvReservas" layoutX="13.0" layoutY="122.0" prefHeight="340.0" prefWidth="615.0" style="-fx-border-color: #4ea46a; -fx-background-color: #0B1A2C; -fx-padding: 8;" stylesheets="@../../../CSS/estilos.css">

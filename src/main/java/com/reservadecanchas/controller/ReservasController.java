@@ -4,7 +4,9 @@ import com.reservadecanchas.model.ReservaFx;
 import com.reservadecanchas.persistence.ReservaDAO;
 import javafx.stage.Stage;
 import com.reservadecanchas.util.CargadorVistas;
+import com.reservadecanchas.util.CsvExporter;
 import com.reservadecanchas.util.ShowAlert;
+import java.io.File;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
@@ -24,6 +26,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableCell;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 
 public class ReservasController {
@@ -260,6 +263,29 @@ public class ReservasController {
         } else {
             // El usuario canceló la eliminación
             System.out.println("Eliminación cancelada por el usuario.");
+        }
+    }
+
+    @FXML
+    private void onExportar(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Guardar archivo CSV");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV files", "*.csv"));
+        File archivo = fileChooser.showSaveDialog(null);
+
+        if (archivo != null) {
+            ReservaDAO dao = new ReservaDAO();
+
+            LocalDate fecha = dpFechaPrincipal.getValue();
+            List<ReservaFx> reservas;
+
+            if (fecha != null) {
+                reservas = dao.getReservasByFecha(fecha);
+            } else {
+                reservas = dao.getAllReservas();
+            }
+
+            CsvExporter.exportarReservas(reservas, archivo.getAbsolutePath());
         }
     }
 
