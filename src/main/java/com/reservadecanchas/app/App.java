@@ -41,6 +41,7 @@ public class App extends Application {
         Image icon = new Image(getClass().getResourceAsStream("/img/Logotipo.png"));
         primaryStage.getIcons().add(icon);
         primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
         primaryStage.centerOnScreen();
         primaryStage.setTitle("Sistema de reservas de canchas");
         primaryStage.show();
