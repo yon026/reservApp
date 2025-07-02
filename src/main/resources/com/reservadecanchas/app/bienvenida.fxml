@@ -21,8 +21,8 @@
                <font>
                   <Font size="20.0" />
                </font></Button>
-            <TextField fx:id="txtUsuario" layoutX="188.0" layoutY="201.0" prefHeight="40.0" prefWidth="250.0" />
-            <PasswordField fx:id="txtContrasena" layoutX="188.0" layoutY="258.0" prefHeight="40.0" prefWidth="250.0" />
+            <TextField fx:id="txtUsuario" layoutX="188.0" layoutY="201.0" onAction="#switchToReservas" prefHeight="40.0" prefWidth="250.0" />
+            <PasswordField fx:id="txtContrasena" layoutX="188.0" layoutY="258.0" onAction="#switchToReservas" prefHeight="40.0" prefWidth="250.0" />
             <ImageView fitHeight="40.0" fitWidth="42.0" layoutX="137.0" layoutY="201.0">
                <image>
                   <Image url="@../../../img/usuario.png" />
